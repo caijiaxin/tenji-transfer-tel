@@ -10,6 +10,10 @@ else:
 # 写上你的谷歌驱动地址
 driver_path = ''
 
+# 写上你的电话号码和密码
+tel = ''
+tel_password = ''
+
 # 写上你的Gmail邮箱
 mail_account = ''
 
@@ -20,5 +24,6 @@ mail_password = ''
 mail_list = ['', '', '', '']
 
 service = TransferService(driver_path, is_start, mail_account, mail_password)
+service.set_tel_and_password(tel, tel_password)
 service.set_mail_list(mail_list)
 service.start()

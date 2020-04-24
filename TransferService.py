@@ -8,8 +8,8 @@ class TransferService:
     __driver_path = ''
     __url = 'https://www.hikari.ntt-east.net/AGT_Main.htm'
 
-    __tel = '0364108562'
-    __tel_password = 'noah2001'
+    __tel = ''
+    __tel_password = ''
 
     __start_or_stop = True
     __mail_subject = ''
@@ -73,3 +73,7 @@ class TransferService:
 
     def set_mail_list(self, mail_list):
         self.__mail_list = mail_list
+
+    def set_tel_and_password(self, tel, password):
+        self.__tel = tel
+        self.__tel_password = password
