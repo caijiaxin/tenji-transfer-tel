@@ -10,32 +10,28 @@ class Actions:
     def __init__(self, driver):
         self.__driver = driver
 
-    def clickElement(self, selector):
+    def click_element(self, selector):
         current_url = self.__driver.current_url
         element = WebDriverWait(self.__driver, 30).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, selector))
         )
         element.click()
         if current_url == self.__driver.current_url:
-            isRadio = element.get_attribute('type')
-            print('is radio :' + isRadio)
-            if isRadio != 'radio':
-                self.clickElement(selector)
-        else:
-            print(self.__driver.current_url)
+            is_radio = element.get_attribute('type')
+            if is_radio != 'radio':
+                self.click_element(selector)
 
-    def inputText(self, selector, text):
+    def input_text(self, selector, text):
         element = WebDriverWait(self.__driver, 30).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, selector))
         )
         element.send_keys(text)
         keys = element.get_attribute('value')
         if len(keys) == 0:
-            self.inputText(selector, text)
+            self.input_text(selector, text)
         else:
-            self.sendKeys(element, text)
-            print('key is :' + keys)
+            self.send_keys(element, text)
 
-    def sendKeys(self, element, text):
+    def send_keys(self, element, text):
         element.clear()
         element.send_keys(text)

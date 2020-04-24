@@ -1,33 +1,24 @@
-from WebDriverFactory import WebDriverFactory
-from Actions import Actions
+from TransferService import TransferService
+import time
 
-driver_path = '/Users/shiraishi/Downloads/chromedriver'
-driver = WebDriverFactory.getChromeDriver(driver_path)
-executor = Actions(driver)
+now = time.strftime('%H', time.localtime(time.time()))
+if now == 10:
+    is_start = True
+else:
+    is_start = False
 
-url = 'https://www.hikari.ntt-east.net/AGT_Main.htm'
-driver.get(url)
+# 写上你的谷歌驱动地址
+driver_path = ''
 
-# 进入登入界面
-executor.clickElement('input[title="ログイン"]')
+# 写上你的Gmail邮箱
+mail_account = ''
 
-# 输入账号密码 登入
-executor.inputText('input[id="tel"]', '0364108562')
-executor.inputText('input[id="pass"]', 'noah2001')
-executor.clickElement('input[alt="ログイン"]')
+# 写上你的Gmail邮箱的app密码
+mail_password = ''
 
-# 点击ボイスワープ按钮
-executor.clickElement('input[alt="ボイスワープ"]')
+# 写上你要通知的上司的邮箱
+mail_list = ['', '', '', '']
 
-# 点击サービス開始／停止按钮
-executor.clickElement('input[alt="サービス開始／停止"]')
-
-# 点击开始单选按钮 设定时间
-executor.clickElement('input[id="r2"]')
-executor.inputText('input[id="call_sec2"]', '5')
-
-# 点击设定按钮
-executor.clickElement('input[alt="設定"]')
-
-# 登出
-executor.clickElement('input[title="ログアウト"]')
+service = TransferService(driver_path, is_start, mail_account, mail_password)
+service.set_mail_list(mail_list)
+service.start()
